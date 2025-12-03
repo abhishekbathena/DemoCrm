@@ -69,8 +69,24 @@
         <!-- Fixed Header: Avatar, Name, ID -->
         <div class="profile-header">
           <div class="profile-avatar">RK</div>
-          <h2 class="profile-name">Rakesh Kumar</h2>
-          <p class="profile-id">ID: USR-101</p>
+          <div class="profile-header-text">
+            <h2 class="profile-name">Rakesh Kumar</h2>
+            <p class="profile-id">
+              <span id="phone-display">• 919986014713</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Phone Number Input -->
+        <div class="detail-item phone-input-wrapper flex justify-center">
+          <span class="detail-label">Phone Number</span>
+          <input
+            id="phone-input"
+            type="tel"
+            class="phone-input"
+            value="919986014713"
+            placeholder="Enter phone number"
+          />
         </div>
 
         <!-- Scrollable Details Section -->
@@ -113,7 +129,7 @@
 
         <!-- Fixed Footer: Action Buttons -->
         <div class="profile-actions">
-          <button class="action-button primary" onclick="placeCall(event, '919986014713')">Call Now</button>
+          <button class="action-button primary" onclick="placeCall(event)">Call Now</button>
           <button class="action-button secondary">View Details</button>
         </div>
       </div>
@@ -122,16 +138,37 @@
 
   <script>
     const iframe = document.getElementById("widget-iframe");
+    const phoneInput = document.getElementById("phone-input");
+    const phoneDisplay = document.getElementById("phone-display");
 
     // Function to place call
-    function placeCall(event, businessSubscriberId) {
+    function placeCall(event) {
       event.stopPropagation();
+
+      const businessSubscriberId = phoneInput ? phoneInput.value.trim() : "";
+      if (!businessSubscriberId) {
+        alert("Please enter a phone number before placing a call.");
+        return;
+      }
+
       console.log("Placing call for:", businessSubscriberId);
 
       iframe.contentWindow.postMessage({
         eventName: "OutboundWACallwithcallId",
         eventData: { calledNumber: businessSubscriberId }
       }, "https://whatsapp.msgkart.com");
+    }
+
+    // Keep header phone text in sync with input
+    if (phoneInput && phoneDisplay) {
+      const syncPhoneDisplay = () => {
+        const v = phoneInput.value.trim();
+        phoneDisplay.textContent = v ? `• ${v}` : "";
+      };
+      // Initial sync (for default value)
+      syncPhoneDisplay();
+      // Update on user input
+      phoneInput.addEventListener("input", syncPhoneDisplay);
     }
 
     // Listen for messages from iframe

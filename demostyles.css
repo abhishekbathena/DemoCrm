@@ -295,6 +295,41 @@ body {
   transform: translateY(-1px);
 }
 
+/* Phone Input styling - keep in theme */
+.phone-input-wrapper {
+  align-items: center;
+  margin: 16px auto 0;
+}
+
+.phone-input-wrapper .detail-label {
+  text-align: center;
+  width: 100%;
+}
+
+.phone-input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #dde2e6;
+  font-size: 14px;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  outline: none;
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.phone-input::placeholder {
+  color: #9aa0a6;
+}
+
+.phone-input:focus {
+  border-color: #ff4a4a;
+  box-shadow: 0 0 0 2px rgba(255, 74, 74, 0.18);
+  background-color: #fff;
+}
+
 .detail-label {
   font-size: 11px;
   font-weight: 600;
