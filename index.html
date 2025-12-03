@@ -59,7 +59,7 @@
   <div class="content">
     <!-- Left Column: WhatsApp iframe -->
     <div class="left-column">
-      <iframe id="widget-iframe" src="https://whatsapp.msgkart.com/whatsapp?email=call_agent2@gmail.com&pass=Callagent@123"
+      <iframe id="widget-iframe" src="https://whatsapp.msgkart.com/whatsapp?email=call_agent3@gmail.com&pass=Callagent@123"
         allow="microphone; camera; autoplay; clipboard-read; clipboard-write" frameborder="0"></iframe>
     </div>
 
@@ -113,7 +113,7 @@
 
         <!-- Fixed Footer: Action Buttons -->
         <div class="profile-actions">
-          <button class="action-button primary" onclick="placeCall(event, 'suiii')">Call Now</button>
+          <button class="action-button primary" onclick="placeCall(event, '917981759905')">Call Now</button>
           <button class="action-button secondary">View Details</button>
         </div>
       </div>
@@ -129,8 +129,8 @@
       console.log("Placing call for:", businessSubscriberId);
 
       iframe.contentWindow.postMessage({
-        eventName: "OutboundWACall",
-        eventData: { businessSubscriberId: businessSubscriberId }
+        eventName: "OutboundWACallwithcallId",
+        eventData: { calledNumber: businessSubscriberId }
       }, "https://whatsapp.msgkart.com");
     }
 
